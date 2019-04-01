@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fix me!</title>
+  <link crossorigin="anonymous"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        rel="stylesheet">
+  <link crossorigin="anonymous"
+        href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
+        rel="stylesheet">
+  <link href="stylesheet.css"
+        rel="stylesheet">
+</head>
+<body class="bg-dark pt-4">
+  <div class="container"
+       id="exercisesHolder">
+    <!-- Part 0: The Rules -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4 border">
+        <h3>Part 0: The Rules</h3>
+        <p>In this exercise, you will go over the different blocks, read the instructions and apply the necessary javascript code to get to the result.<br>
+        You are not allowed to write anything outside the script tags provided. So keep your code in there!</p>
+        <h5>How to do these exercies:</h5>
+        <ul>
+          <li>Read the instructions (Above the line)</li>
+          <li>Apply these instructions on the content (Below the line)</li>
+          <li>Do the <span class="bonus">bonus</span> items if you wish to challenge yourself some more</li>
+        </ul>
+      </div>
+    </div><!-- END OF Part 0 -->
+    <!-- Part 1: Interaction with inputs -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 1: Interaction with inputs</h3>
+        <p>Below this, you have an input, here's what you need to do:</p>
+        <ul>
+          <li>When you type something in the greetingsBox, The bordered box should fill with what you typed</li>
+          <li>When you empty out the input box, show a "sorry nothing to show" message or a funny text</li>
+        </ul>
+        <hr>
+        <br>
+        <label for="greetingsBox">Type your message here: <input class="form-control"
+               id="greetingsBox"
+               type="text"></label>
+        <div class="col-6 mx-auto p-2 greetingsBoxHolder">
+          <h3><!-- Your message comes here--></h3>
+        </div>
+      </div>
+      <script>
+                // Wait for the DOM to be loaded
+                document.addEventListener("DOMContentLoaded", function (event) {
+                    let input = document.getElementById("greetingsBox"),
+                        targetBox = document.getElementsByClassName("greetingsBoxHolder");
+
+                    input.addEventListener("keyup", function (e) {
+                        if (this.value == "") {
+                            targetBox[0].innerHTML = "D'oh, no idea what to say";
+                        }
+                        else {
+                            targetBox[0].innerHTML = this.value;
+                        }
+                    });
+
+                });
+      </script>
+    </div><!-- END OF Part 1 -->
+    <!-- Part 2: Interaction with inputs and tables -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 2: DOM Creation on interaction with inputs</h3>
+        <p>Below this, you have a table, here are the instructions:</p>
+        <ul>
+          <li>When you press enter, check whether all fields have been filled (except remarks)</li>
+          <li>If the first condition is met, create a row with this data and allow the user to fill in the next row<br>
+          (so there should always be a row with empty inputs to fill in)</li>
+          <li class="bonus">If you press enter and the conditions aren't met, display a popup saying what's wrong with <a href="https://codeseven.github.io/toastr/demo.html"
+                target="_blank">toastr</a>
+          </li>
+          <li class="bonus">Add a cross to the last cell, that when clicked, deletes the row again (Do NOT use the HTML onclick attribute!)</li>
+        </ul>
+        <hr>
+        <br>
+        <table cellspacing="0"
+               class="table table-striped table-bordered"
+               id="pizzaOrders"
+               width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Pizza</th>
+              <th>Size</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="emptyRow">
+              <td><input class="form-control"
+                     id="name"
+                     placeholder="Fill in your name"
+                     type="text"></td>
+              <td><input class="form-control"
+                     id="pizza"
+                     placeholder="Fill in your pizza choice"
+                     type="text"></td>
+              <td><input class="form-control"
+                     id="size"
+                     placeholder="Fill in your chosen size"
+                     type="text"></td>
+              <td><input class="form-control"
+                     id="remarks"
+                     placeholder="Fill in your remarks"
+                     type="text"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <script>
+                // Write your code here
+                document.addEventListener("DOMContentLoaded", function (event) {
+                    let row = document.getElementById("emptyRow"),
+                        inputs = row.getElementsByClassName("form-control");
+
+                    for (let input of inputs) {
+                        input.addEventListener('keyup', check_row, false);
+                    }
+
+                    function check_row(e) {
+                        if (e.which === 13) {
+                            let allowed = true;
+                            for (let input of inputs) {
+                                if (input.value == "" && input.getAttribute("id") != "remarks") {
+                                    allowed = false;
+                                    toastr.error("Please fill in all the requird fields before submitting!");
+                                    break;
+                                }
+                            }
+
+                            // Continue with adding the row
+                            let new_row = document.createElement("tr");
+                            if (allowed) {
+                                for (let input of inputs) {
+                                    let cell = document.createElement("td");
+                                    cell.innerHTML = input.value;
+                                    new_row.appendChild(cell);
+                                    input.value = "";
+                                }
+                                let table = document.getElementById("pizzaOrders");
+                                table.appendChild(new_row, table.lastChild);
+                                // console.log(new_row);
+                            }
+
+
+                        }
+                    }
+
+                });
+      </script>
+    </div><!-- END OF Part 2 -->
+    <!-- Part 3: Element alterations -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 3: Element alterations</h3>
+        <p class="explanation">Here is what you need to do, below me is a list:</p>
+        <ul>
+          <li>Fix it up so that it is an actual HTML list</li>
+          <li>Make it so the user can type what he / she wants in the final option</li>
+          <li>Launch the above transformation once the button (#launchMe) is pushed</li>
+          <li class="bonus">"Choose your final ingredient" should be placed as placeholder text in the input when it's empty</li>
+          <li class="bonus">When you go away from the input (click somewhere else), if the input is not empty, it should change into a regular LI item with the content of the input</li>
+        </ul>
+        <hr>
+        <br>
+        <button class="btn btn-success play-button"
+             id="launchMe"></button>
+        <p id="listHolder">This is what you need to make delicious spaghetti: <span>Pasta</span><span>Tomato Sauce</span><span>Cheese</span><span>Choose your final ingredient</span></p><br>
+        <br>
+      </div>
+      <script>
+                /** Javascript **/
+                // Wait for the DOM to be loaded
+                document.addEventListener("DOMContentLoaded", function (event) {
+
+                    // Get the span items (to edit them) and the holder of the span items (#listHolder)
+                    let spanItems = document.getElementById("listHolder").children,
+                        listHolder = document.getElementById("listHolder"),
+                        x = 0;
+
+                    // Loop through all span items
+                    for (let item of spanItems) {
+                        x++;
+
+                        // Set the text as a variable and then create a list item html tag
+                        let text = item.innerHTML;
+                        let li = document.createElement("li");
+
+                        // Add the text of this span item to the newly created list item
+                        li.innerHTML = text;
+
+                        // Replace the span item with the list item
+                        listHolder.childNodes[x].replaceWith(li);
+                    }
+
+                    // Replace the last list item with an input
+                    let li = listHolder.childNodes[4],
+                        text = li.innerHTML,
+                        input = document.createElement("input");
+                    input.setAttribute("placeholder", text);
+                    input.setAttribute("class", "form-control d-inline w-25");
+                    input.setAttribute("id", "lastListItem");
+                    li.innerHTML = "";
+                    li.appendChild(input);
+
+                    // Add dynamic event listener (normal one wont work because we added the HTML element we are listening to after the DOM Loaded in javascript)
+                    document.addEventListener('change', function (e) {
+                        // Listen to change event on entire document
+                        // If the thing that has changed has the id lastListItem, then:
+                        if (e.target && e.target.id == 'lastListItem') {
+                            // If this lastListItem (target) has no empty value (input isn't empty):
+                            if (e.target.value != "") {
+                                // Then change the content of this last list item to the value of the input
+                                li.innerHTML = e.target.value;
+                            }
+                        }
+                    });
+                });
+
+
+                /** jQuery **/
+                /*
+                $(document).ready(function() {
+                    $x = 0;
+                    $("#listHolder span").each(function() {
+                        $x++;
+                        $html = $(this).html();
+                        if ($x > 3) {
+                            $html = "<input class='form-control w-25 d-inline' id='lastListItem' placeholder='" + $(this).html() + "'/>";
+                        }
+                        $(this).replaceWith($("<li>" + $html + "<\/li>"));
+                    });
+
+                    $("#listHolder").on("change", "#lastListItem", function() {
+                        if ($(this).val() != "") {
+                            $(this).parent().html($(this).val());
+                        }
+                    });
+                });
+                */
+      </script>
+    </div><!-- END OF Part 3 -->
+    <!-- Part 4: Interaction with inputs in combination with elements -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 4: Interaction with inputs</h3>
+        <p>Below this, you have a table with some random data, here's what you need to do:</p>
+        <ul>
+          <li>When you type something in the searchInput, the table rows need to be filtered by the typed text</li>
+          <li>Add checkboxes to each header (thead -&gt; th ) when unchecked the columns disappear from the table (default = checked)</li>
+          <li class="bonus">Highlight the found text in the table row</li>
+        </ul>
+        <hr>
+        <br>
+        <label>Search in this table:<input class="form-control"
+               id="searchInput"
+               type="search"></label>
+        <table cellspacing="0"
+               class="table table-striped table-bordered"
+               id="searchTable"
+               width="100%">
+          <thead>
+            <tr>
+              <th class="th-sm">Name</th>
+              <th class="th-sm">Position</th>
+              <th class="th-sm">Office</th>
+              <th class="th-sm">Age</th>
+              <th class="th-sm">Start date</th>
+              <th class="th-sm">Salary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tiger Nixon</td>
+              <td>System Architect</td>
+              <td>Edinburgh</td>
+              <td>61</td>
+              <td>2011/04/25</td>
+              <td>$320,800</td>
+            </tr>
+            <tr>
+              <td>Garrett Winters</td>
+              <td>Accountant</td>
+              <td>Tokyo</td>
+              <td>63</td>
+              <td>2011/07/25</td>
+              <td>$170,750</td>
+            </tr>
+            <tr>
+              <td>Ashton Cox</td>
+              <td>Junior Technical Author</td>
+              <td>San Francisco</td>
+              <td>66</td>
+              <td>2009/01/12</td>
+              <td>$86,000</td>
+            </tr>
+            <tr>
+              <td>Cedric Kelly</td>
+              <td>Senior Javascript Developer</td>
+              <td>Edinburgh</td>
+              <td>22</td>
+              <td>2012/03/29</td>
+              <td>$433,060</td>
+            </tr>
+            <tr>
+              <td>Airi Satou</td>
+              <td>Accountant</td>
+              <td>Tokyo</td>
+              <td>33</td>
+              <td>2008/11/28</td>
+              <td>$162,700</td>
+            </tr>
+            <tr>
+              <td>Brielle Williamson</td>
+              <td>Integration Specialist</td>
+              <td>New York</td>
+              <td>61</td>
+              <td>2012/12/02</td>
+              <td>$372,000</td>
+            </tr>
+            <tr>
+              <td>Herrod Chandler</td>
+              <td>Sales Assistant</td>
+              <td>San Francisco</td>
+              <td>59</td>
+              <td>2012/08/06</td>
+              <td>$137,500</td>
+            </tr>
+            <tr>
+              <td>Rhona Davidson</td>
+              <td>Integration Specialist</td>
+              <td>Tokyo</td>
+              <td>55</td>
+              <td>2010/10/14</td>
+              <td>$327,900</td>
+            </tr>
+            <tr>
+              <td>Colleen Hurst</td>
+              <td>Javascript Developer</td>
+              <td>San Francisco</td>
+              <td>39</td>
+              <td>2009/09/15</td>
+              <td>$205,500</td>
+            </tr>
+            <tr>
+              <td>Sonya Frost</td>
+              <td>Software Engineer</td>
+              <td>Edinburgh</td>
+              <td>23</td>
+              <td>2008/12/13</td>
+              <td>$103,600</td>
+            </tr>
+            <tr>
+              <td>Jena Gaines</td>
+              <td>Office Manager</td>
+              <td>London</td>
+              <td>30</td>
+              <td>2008/12/19</td>
+              <td>$90,560</td>
+            </tr>
+            <tr>
+              <td>Quinn Flynn</td>
+              <td>Support Lead</td>
+              <td>Edinburgh</td>
+              <td>22</td>
+              <td>2013/03/03</td>
+              <td>$342,000</td>
+            </tr>
+            <tr>
+              <td>Charde Marshall</td>
+              <td>Regional Director</td>
+              <td>San Francisco</td>
+              <td>36</td>
+              <td>2008/10/16</td>
+              <td>$470,600</td>
+            </tr>
+            <tr>
+              <td>Haley Kennedy</td>
+              <td>Senior Marketing Designer</td>
+              <td>London</td>
+              <td>43</td>
+              <td>2012/12/18</td>
+              <td>$313,500</td>
+            </tr>
+            <tr>
+              <td>Tatyana Fitzpatrick</td>
+              <td>Regional Director</td>
+              <td>London</td>
+              <td>19</td>
+              <td>2010/03/17</td>
+              <td>$385,750</td>
+            </tr>
+            <tr>
+              <td>Michael Silva</td>
+              <td>Marketing Designer</td>
+              <td>London</td>
+              <td>66</td>
+              <td>2012/11/27</td>
+              <td>$198,500</td>
+            </tr>
+            <tr>
+              <td>Paul Byrd</td>
+              <td>Chief Financial Officer (CFO)</td>
+              <td>New York</td>
+              <td>64</td>
+              <td>2010/06/09</td>
+              <td>$725,000</td>
+            </tr>
+            <tr>
+              <td>Gloria Little</td>
+              <td>Systems Administrator</td>
+              <td>New York</td>
+              <td>59</td>
+              <td>2009/04/10</td>
+              <td>$237,500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <script>
+                // Write your code here
+                document.addEventListener("DOMContentLoaded", function (event) {
+                    let input = document.getElementById("searchInput"),
+                        table = document.getElementById("searchTable"),
+                        tbody = table.getElementsByTagName("tbody"),
+                        rows = tbody[0].children;
+
+                    input.addEventListener("keyup", search_table);
+
+                    function search_table(e) {
+                        let str = e.target.value;
+                        if (str == "<" || str == ">" || str == "/") {
+                            str = "";
+                            e.target.value = "";
+                        }
+
+
+
+                        for (let row of rows) {
+                            while (row.innerHTML.indexOf("<\/span>") !== -1) {
+                                row.innerHTML = row.innerHTML.replace("<span class=\"highlight\">", "");
+                                row.innerHTML = row.innerHTML.replace("<\/span>", "");
+                            }
+
+
+                            if (str == "") {
+                                row.style.display = "table-row";
+                            }
+                            else {
+                                if (row.innerHTML.indexOf(str) === -1) {
+                                    row.style.display = "none";
+                                }
+                                else {
+                                    let index = row.innerHTML.indexOf(str);
+                                    while (index !== -1) {
+                                        if (row.innerHTML.substr(index - 1, 1) === "<" || row.innerHTML.substr(index - 1, 1) === "/" || row.innerHTML.substr(index + 1, 1) === ">") {
+                                            index = index - 31;
+                                        }
+                                        else {
+                                            row.style.display = "table-row";
+                                            row.innerHTML = row.innerHTML.betterReplace(str, "<span class=\"highlight\">" + str + "<\/span>", index);
+                                        }
+
+                                        index = index + 32;
+                                        let search_new = row.innerHTML.substr(index);
+                                        if (search_new.indexOf(str) !== -1) {
+                                            index = index + search_new.indexOf(str);
+                                        }
+                                        else {
+                                            index = -1;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                });
+
+                String.prototype.betterReplace = function (search, replace, from) {
+                    if (this.length > from) {
+                        return this.slice(0, from) + this.slice(from).replace(search, replace);
+                    }
+                    return this;
+                }
+      </script>
+    </div><!-- END OF Part 4 -->
+    <!-- Part 5: Make it move -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 5: Make it move</h3>
+        <p>Below this, you have a div that needs to move left to right using JS for the motion. Make it reach the end in 2 seconds, then return in 5s. Repeat that forever.</p>
+        <hr>
+        <br>
+        <div class="block"
+             id="moveAnimation"></div>
+      </div>
+      <script>
+                // Write your code here
+      </script>
+    </div><!-- END OF Part 5 -->
+    <!-- Part 6: Make it follow -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 6: make it follow</h3>
+        <p>Below this, you have a div that needs to move left to right using JS for the motion. It should follow the mouse horizontally.</p>
+        <hr>
+        <br>
+        <div class="block"
+             id="followMouse"></div>
+      </div>
+      <script>
+                // Write your code here
+      </script>
+    </div><!-- END OF Part 6 -->
+    <!-- Part 7: Name selector -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 7: Sliiiiiders</h3>
+        <p>Recreate this very intuitive user interface. Insert the DOM nodes (html elements) using document.createElement();</p><img alt="Interface"
+             src="../input.gif">
+        <hr>
+        <br>
+        <div id="target"></div>
+      </div>
+      <script>
+                // Write your code here
+      </script>
+    </div><!-- END OF Part 7 -->
+    <!-- Part 8: Name selector2 -->
+    <div class="row">
+      <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
+        <h3>Part 8: Sliiiiiders again</h3>
+        <p>Put the exercise of above here again. They should both keep working. And you should only write one more line. In other words you cannot hard code ids 😉 If needed, rewrite the above code.</p>
+        <hr>
+        <br>
+        <div id="target2"></div>
+      </div>
+      <script>
+                // You can put at most one line here
+      </script>
+    </div><!-- END OF Part 8 -->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+  <script crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+  <script crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
+  <script>
+
+
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+  </script>
+</body>
+</html>
