@@ -59,7 +59,6 @@
             document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = 'Sorry, nothing to show';
           }
         });
-            // Write your code here
       </script>
     </div><!-- END OF Part 1 -->
     <!-- Part 2: Interaction with inputs and tables -->
@@ -113,7 +112,30 @@
         </table>
       </div>
       <script>
-            // Write your code here
+        let inputRow = document.getElementById('emptyRow');
+        console.dir(inputRow);
+        let nameInput = inputRow.querySelector('#name');
+        let pizzaInput = inputRow.querySelector('#pizza');
+        let sizeInput = inputRow.querySelector('#size');
+        console.dir(nameInput);
+        inputRow.addEventListener('keyup',function(event){
+          if (event.key === "Enter") {
+            if (nameInput.value == '' || pizzaInput.value == '' || sizeInput == '') {
+              alert('Missing input!');
+              return;
+            } else {
+              let newRow = document.createElement('tr');
+              inputRow.childNodes.forEach(function(input) {
+                let cell = document.createElement('td');
+                cell.textContent = input.value;
+                newRow.append(cell);
+              });
+              inputRow.parentElement.append(newRow);
+            }
+
+          }
+        });
+
       </script>
     </div><!-- END OF Part 2 -->
     <!-- Part 3: Element alterations -->
@@ -385,6 +407,9 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
 
 
 
