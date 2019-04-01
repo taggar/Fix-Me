@@ -125,12 +125,14 @@
               return;
             } else {
               let newRow = document.createElement('tr');
-              inputRow.childNodes.forEach(function(input) {
+              Array.from(inputRow.querySelectorAll('input')).forEach(function(input) {
+                console.dir(input);
                 let cell = document.createElement('td');
                 cell.textContent = input.value;
                 newRow.append(cell);
+                console.dir(newRow);
               });
-              inputRow.parentElement.append(newRow);
+              inputRow.parentNode.appendChild(newRow);
             }
 
           }
@@ -398,14 +400,14 @@
       </script>
     </div><!-- END OF Part 8 -->
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script crossorigin="anonymous"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script crossorigin="anonymous"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
   <script>
 
 
