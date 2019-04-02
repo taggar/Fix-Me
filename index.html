@@ -116,8 +116,6 @@
         let nameInput = inputRow.querySelector('#name');
         let pizzaInput = inputRow.querySelector('#pizza');
         let sizeInput = inputRow.querySelector('#size');
-        let deleteButton = document.createElement('td');
-        deleteButton.innerHTML = '<button class=\'deleteButton\'>X<\/button>'
         inputRow.addEventListener('keyup',function(event){
           if (event.key === "Enter") {
             if (nameInput.value == '' || pizzaInput.value == '' || sizeInput.value == '') {
@@ -130,6 +128,8 @@
                 cell.textContent = input.value;
                 newRow.append(cell);
               });
+              let deleteButton = document.createElement('td');
+              deleteButton.innerHTML = '<button class=\'deleteButton\'>X<\/button>'
               newRow.append(deleteButton);
               deleteButton.addEventListener('click',function(event){
                 event.target.closest('tr').remove();
@@ -186,7 +186,7 @@
             });
 
         });
-            
+
       </script>
     </div><!-- END OF Part 3 -->
     <!-- Part 4: Interaction with inputs in combination with elements -->
@@ -447,14 +447,14 @@
       </script>
     </div><!-- END OF Part 8 -->
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script crossorigin="anonymous"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script crossorigin="anonymous"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
   <script>
 
 
