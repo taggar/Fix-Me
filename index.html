@@ -369,6 +369,7 @@
       <script>
             const theTable = document.getElementById('searchTable');
             const theTableBody = theTable.querySelector('tbody');
+            const theTableHead = theTable.querySelector('thead');
             const theTableBodyRows = theTableBody.querySelectorAll('tr');
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('keyup', function(){
@@ -381,6 +382,13 @@
                 }
               });
             });
+            theTableHead.querySelectorAll('th').forEach(function(aHead) {
+              let checkbox = document.createElement('input');
+              checkbox.type = 'checkbox';
+              checkbox.checked = true;
+              aHead.innerHTML += '&nbsp;';
+              aHead.appendChild(checkbox);
+            })
       </script>
     </div><!-- END OF Part 4 -->
     <!-- Part 5: Make it move -->
@@ -448,6 +456,22 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
