@@ -160,6 +160,7 @@
         <br>
       </div>
       <script>
+        document.getElementById('launchMe').addEventListener('click', function(){
             let items = document.querySelectorAll('#listHolder > span');
             var listHolderList = document.createElement('ol');
             items.forEach(function(item) {
@@ -169,6 +170,22 @@
               listHolderList.appendChild(itemWrapper);
             });
             document.getElementById('listHolder').appendChild(listHolderList);
+            let inputField = document.createElement('input');
+            inputField.id = 'favIngredient';
+            inputField.placeholder = 'Choose your final ingredient';
+            listHolderList.lastChild.textContent += ': ';
+            listHolderList.lastChild.appendChild(inputField);
+            inputField.addEventListener('blur',function(){
+              if (inputField.value.trim() != '') {
+                console.log('value: ' + inputField.value.trim);
+                listHolderList.lastChild.removeChild(inputField);
+                listHolderList.lastChild.textContent = 'Your final ingredient: ' + inputField.value;
+              } else {
+                inputField.value = '';
+              }
+            });
+
+        });
             
       </script>
     </div><!-- END OF Part 3 -->
@@ -418,6 +435,42 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
