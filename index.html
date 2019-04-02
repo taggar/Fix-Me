@@ -371,17 +371,16 @@
             const theTableBody = theTable.querySelector('tbody');
             const theTableBodyRows = theTableBody.querySelectorAll('tr');
             const searchInput = document.getElementById('searchInput');
-            searchInput.onkeyup = match;
-            function match(){
+            searchInput.addEventListener('keyup', function(){
               let searchedFor = searchInput.value;
-              theTableBodyRows.forEach(function(aRow){
+              theTableBodyRows.forEach(function (aRow) {
                 if (aRow.textContent.toLowerCase().indexOf(searchedFor.toLowerCase()) == -1) {
                   aRow.style.display = 'none';
                 } else {
                   aRow.style.display = 'table-row';
                 }
               });
-            };
+            });
       </script>
     </div><!-- END OF Part 4 -->
     <!-- Part 5: Make it move -->
@@ -449,6 +448,10 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
 
 
 
