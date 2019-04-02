@@ -136,7 +136,6 @@
               });
               inputRow.parentNode.appendChild(newRow);
             }
-
           }
         });
       </script>
@@ -156,12 +155,21 @@
         <hr>
         <br>
         <button class="btn btn-success play-button"
-             id="launchMe"></button>
+             id="launchMe">Launch me</button>
         <p id="listHolder">This is what you need to make delicious spaghetti: <span>Pasta</span><span>Tomato Sauce</span><span>Cheese</span><span>Choose your final ingredient</span></p><br>
         <br>
       </div>
       <script>
-            // Write your code here
+            let items = document.querySelectorAll('#listHolder > span');
+            var listHolderList = document.createElement('ol');
+            items.forEach(function(item) {
+              let itemWrapper = document.createElement('li');
+              item.parentNode.insertBefore(itemWrapper, item);
+              itemWrapper.appendChild(item);
+              listHolderList.appendChild(itemWrapper);
+            });
+            document.getElementById('listHolder').appendChild(listHolderList);
+            
       </script>
     </div><!-- END OF Part 3 -->
     <!-- Part 4: Interaction with inputs in combination with elements -->
@@ -410,6 +418,25 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
