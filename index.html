@@ -422,20 +422,23 @@
              id="moveAnimation"></div>
       </div>
       <script>
-          const theBlock = document.getElementById('moveAnimation');
+          const moveAnimationBlock = document.getElementById('moveAnimation');
           // start the first transition
-          theBlock.style.left = '0';
-          theBlock.style.transitionProperty = 'left';
-          theBlock.style.transitionDuration = '2s';
-          theBlock.style.left = '100%';
+          if (moveAnimationBlock.style.left != '100%') {
+            moveAnimationBlock.style.left = '0';
+            moveAnimationBlock.style.transitionProperty = 'left';
+            //moveAnimationBlock.style.transitionDelay = '2s';
+            moveAnimationBlock.style.transitionDuration = '2s';
+            moveAnimationBlock.style.left = '100%';
+          }
           // after the first transition, revert and repeat
-          theBlock.addEventListener('transitionend', function(){
-            if (theBlock.style.left != '100%') {
-              theBlock.style.transitionDuration = '2s';
-              theBlock.style.left = '100%';
+          moveAnimationBlock.addEventListener('transitionend', function(){
+            if (moveAnimationBlock.style.left != '100%') {
+              moveAnimationBlock.style.transitionDuration = '2s';
+              moveAnimationBlock.style.left = '100%';
             } else {
-              theBlock.style.transitionDuration = '5s';
-              theBlock.style.left = '0%';
+              moveAnimationBlock.style.transitionDuration = '5s';
+              moveAnimationBlock.style.left = '0%';
             }
           });
       </script>
@@ -451,7 +454,16 @@
              id="followMouse"></div>
       </div>
       <script>
-            // Write your code here
+      const followMouseBlock = document.getElementById('followMouse');
+      // start the first transition
+      followMouseBlock.style.left = '0';
+      followMouseBlock.style.transitionProperty = 'left';
+      // after the first transition, revert and repeat
+      followMouseBlock.parentElement.closest('div').addEventListener('mousemove', function(event){
+          console.log(event.screenX);
+          followMouseBlock.style.transitionDuration = '2s';
+          followMouseBlock.style.left = event.screenX;
+      });
       </script>
     </div><!-- END OF Part 6 -->
     <!-- Part 7: Name selector -->
