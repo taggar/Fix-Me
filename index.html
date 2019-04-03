@@ -127,6 +127,7 @@
                 let cell = document.createElement('td');
                 cell.textContent = input.value;
                 newRow.append(cell);
+                input.value = '';
               });
               let deleteButton = document.createElement('td');
               deleteButton.innerHTML = '<button class=\'deleteButton\'>X<\/button>'
@@ -382,9 +383,10 @@
                 } else {
                   aRow.style.display = 'table-row';
                   let regex = new RegExp(searchedFor, "gi");
-                  let found = aRow.textContent.match(regex);
-                  found.forEach(function(instance){
-                    console.log(instance);
+                  [...aRow.getElementsByTagName('td')].forEach(function(aCell){
+                    console.log(aCell.textContent);
+                    aCell.innerHTML = aCell.textContent.replace(regex, '<span style=\'color: red; font-weight: bold\'>$&<\/span>');
+                    console.log(aCell.textContent);
                   });
                 }
               });
@@ -474,6 +476,78 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
