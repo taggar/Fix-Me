@@ -52,13 +52,13 @@
         </div>
       </div>
       <script>
-        document.getElementById('greetingsBox').setAttribute('placeholder', 'Sorry, nothing to show');
-        document.getElementById('greetingsBox').addEventListener('keyup',function(){
-          document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = document.getElementById('greetingsBox').value;
-          if (document.getElementById('greetingsBox').value == '') {
-            document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = 'Sorry, nothing to show';
-          }
-        });
+                document.getElementById('greetingsBox').setAttribute('placeholder', 'Sorry, nothing to show');
+                document.getElementById('greetingsBox').addEventListener('keyup', function () {
+                    document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = document.getElementById('greetingsBox').value;
+                    if (document.getElementById('greetingsBox').value == '') {
+                        document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = 'Sorry, nothing to show';
+                    }
+                });
       </script>
     </div><!-- END OF Part 1 -->
     <!-- Part 2: Interaction with inputs and tables -->
@@ -112,33 +112,33 @@
         </table>
       </div>
       <script>
-        let inputRow = document.getElementById('emptyRow');
-        let nameInput = inputRow.querySelector('#name');
-        let pizzaInput = inputRow.querySelector('#pizza');
-        let sizeInput = inputRow.querySelector('#size');
-        inputRow.addEventListener('keyup',function(event){
-          if (event.key === "Enter") {
-            if (nameInput.value == '' || pizzaInput.value == '' || sizeInput.value == '') {
-              toastr['error']('Fill in Name, PIzza, and Size', 'Missing input ...');
-              return;
-            } else {
-              let newRow = document.createElement('tr');
-              Array.from(inputRow.querySelectorAll('input')).forEach(function(input) {
-                let cell = document.createElement('td');
-                cell.textContent = input.value;
-                newRow.append(cell);
-                input.value = '';
-              });
-              let deleteButton = document.createElement('td');
-              deleteButton.innerHTML = '<button class=\'deleteButton\'>X<\/button>'
-              newRow.append(deleteButton);
-              deleteButton.addEventListener('click',function(event){
-                event.target.closest('tr').remove();
-              });
-              inputRow.parentNode.appendChild(newRow);
-            }
-          }
-        });
+                let inputRow = document.getElementById('emptyRow');
+                let nameInput = inputRow.querySelector('#name');
+                let pizzaInput = inputRow.querySelector('#pizza');
+                let sizeInput = inputRow.querySelector('#size');
+                inputRow.addEventListener('keyup', function (event) {
+                    if (event.key === "Enter") {
+                        if (nameInput.value == '' || pizzaInput.value == '' || sizeInput.value == '') {
+                            toastr['error']('Fill in Name, PIzza, and Size', 'Missing input ...');
+                            return;
+                        } else {
+                            let newRow = document.createElement('tr');
+                            Array.from(inputRow.querySelectorAll('input')).forEach(function (input) {
+                                let cell = document.createElement('td');
+                                cell.textContent = input.value;
+                                newRow.append(cell);
+                                input.value = '';
+                            });
+                            let deleteButton = document.createElement('td');
+                            deleteButton.innerHTML = '<button class=\'deleteButton\'>X<\/button>'
+                            newRow.append(deleteButton);
+                            deleteButton.addEventListener('click', function (event) {
+                                event.target.closest('tr').remove();
+                            });
+                            inputRow.parentNode.appendChild(newRow);
+                        }
+                    }
+                });
       </script>
     </div><!-- END OF Part 2 -->
     <!-- Part 3: Element alterations -->
@@ -161,32 +161,32 @@
         <br>
       </div>
       <script>
-        document.getElementById('launchMe').addEventListener('click', function(){
-            let items = document.querySelectorAll('#listHolder > span');
-            var listHolderList = document.createElement('ol');
-            items.forEach(function(item) {
-              let itemWrapper = document.createElement('li');
-              item.parentNode.insertBefore(itemWrapper, item);
-              itemWrapper.appendChild(item);
-              listHolderList.appendChild(itemWrapper);
-            });
-            document.getElementById('listHolder').appendChild(listHolderList);
-            let inputField = document.createElement('input');
-            inputField.id = 'favIngredient';
-            inputField.placeholder = 'Choose your final ingredient';
-            listHolderList.lastChild.textContent += ': ';
-            listHolderList.lastChild.appendChild(inputField);
-            inputField.addEventListener('blur',function(){
-              if (inputField.value.trim() != '') {
-                console.log('value: ' + inputField.value.trim);
-                listHolderList.lastChild.removeChild(inputField);
-                listHolderList.lastChild.textContent = 'Your final ingredient: ' + inputField.value;
-              } else {
-                inputField.value = '';
-              }
-            });
+                document.getElementById('launchMe').addEventListener('click', function () {
+                    let items = document.querySelectorAll('#listHolder > span');
+                    var listHolderList = document.createElement('ol');
+                    items.forEach(function (item) {
+                        let itemWrapper = document.createElement('li');
+                        item.parentNode.insertBefore(itemWrapper, item);
+                        itemWrapper.appendChild(item);
+                        listHolderList.appendChild(itemWrapper);
+                    });
+                    document.getElementById('listHolder').appendChild(listHolderList);
+                    let inputField = document.createElement('input');
+                    inputField.id = 'favIngredient';
+                    inputField.placeholder = 'Choose your final ingredient';
+                    listHolderList.lastChild.textContent += ': ';
+                    listHolderList.lastChild.appendChild(inputField);
+                    inputField.addEventListener('blur', function () {
+                        if (inputField.value.trim() != '') {
+                            console.log('value: ' + inputField.value.trim);
+                            listHolderList.lastChild.removeChild(inputField);
+                            listHolderList.lastChild.textContent = 'Your final ingredient: ' + inputField.value;
+                        } else {
+                            inputField.value = '';
+                        }
+                    });
 
-        });
+                });
 
       </script>
     </div><!-- END OF Part 3 -->
@@ -368,47 +368,47 @@
         </table>
       </div>
       <script>
-            const theTable = document.getElementById('searchTable');
-            const theRows = theTable.querySelectorAll('tr');
-            const theTableBody = theTable.querySelector('tbody');
-            const theTableHead = theTable.querySelector('thead');
-            const theTableBodyRows = theTableBody.querySelectorAll('tr');
-            const searchInput = document.getElementById('searchInput');
-            // Listen to input in the search box and filter accordingly
-            searchInput.addEventListener('keyup', function(){
-              let searchedFor = searchInput.value;
-              theTableBodyRows.forEach(function (aRow) {
-                if (aRow.textContent.toLowerCase().indexOf(searchedFor.toLowerCase()) == -1) {
-                  aRow.style.display = 'none';
-                } else {
-                  aRow.style.display = 'table-row';
-                  let regex = new RegExp(searchedFor, "gi");
-                  [...aRow.getElementsByTagName('td')].forEach(function(aCell){
-                    console.log(aCell.textContent);
-                    aCell.innerHTML = aCell.textContent.replace(regex, '<span style=\'color: red; font-weight: bold\'>$&<\/span>');
-                    console.log(aCell.textContent);
-                  });
-                }
-              });
-            });
-
-            // Checkboxes on columns and listen to click event 
-            Array.from(theTableHead.querySelectorAll('th')).forEach(function(aHead) {
-              let checkbox = document.createElement('input');
-              checkbox.type = 'checkbox';
-              checkbox.checked = true;
-              aHead.innerHTML += '&nbsp;';
-              aHead.appendChild(checkbox);
-              checkbox.addEventListener('click', function(){
-                let colNumber = Array.from(theTableHead.querySelectorAll('input')).indexOf(checkbox);
-                console.log(checkbox);
-                console.log(colNumber);
-                theRows.forEach(function(row){
-                  row.querySelectorAll('th, td')[colNumber].remove();
+                const theTable = document.getElementById('searchTable');
+                const theRows = theTable.querySelectorAll('tr');
+                const theTableBody = theTable.querySelector('tbody');
+                const theTableHead = theTable.querySelector('thead');
+                const theTableBodyRows = theTableBody.querySelectorAll('tr');
+                const searchInput = document.getElementById('searchInput');
+                // Listen to input in the search box and filter accordingly
+                searchInput.addEventListener('keyup', function () {
+                    let searchedFor = searchInput.value;
+                    theTableBodyRows.forEach(function (aRow) {
+                        if (aRow.textContent.toLowerCase().indexOf(searchedFor.toLowerCase()) == -1) {
+                            aRow.style.display = 'none';
+                        } else {
+                            aRow.style.display = 'table-row';
+                            let regex = new RegExp(searchedFor, "gi");
+                            [...aRow.getElementsByTagName('td')].forEach(function (aCell) {
+                                console.log(aCell.textContent);
+                                aCell.innerHTML = aCell.textContent.replace(regex, '<span style=\'color: red; font-weight: bold\'>$&<\/span>');
+                                console.log(aCell.textContent);
+                            });
+                        }
+                    });
                 });
 
-              });
-            })
+                // Checkboxes on columns and listen to click event 
+                Array.from(theTableHead.querySelectorAll('th')).forEach(function (aHead) {
+                    let checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.checked = true;
+                    aHead.innerHTML += '&nbsp;';
+                    aHead.appendChild(checkbox);
+                    checkbox.addEventListener('click', function () {
+                        let colNumber = Array.from(theTableHead.querySelectorAll('input')).indexOf(checkbox);
+                        console.log(checkbox);
+                        console.log(colNumber);
+                        theRows.forEach(function (row) {
+                            row.querySelectorAll('th, td')[colNumber].remove();
+                        });
+
+                    });
+                })
       </script>
     </div><!-- END OF Part 4 -->
     <!-- Part 5: Make it move -->
@@ -422,7 +422,20 @@
              id="moveAnimation"></div>
       </div>
       <script>
-            // Write your code here
+          const theBlock = document.getElementById('moveAnimation');
+          theBlock.style.left = '0';
+          if (theBlock.style.left != '100%') {
+          theBlock.style.transitionProperty = 'left';
+          theBlock.style.transitionDuration = '2s';
+          theBlock.style.transitionDelay = '2s';
+          theBlock.style.left = '100%';
+
+          } else {
+              theBlock.style.transitionProperty = 'left';
+              theBlock.style.transitionDuration = '5s';
+              theBlock.style.transitionDelay = '2s';
+              theBlock.style.left = '0%';
+          }
       </script>
     </div><!-- END OF Part 5 -->
     <!-- Part 6: Make it follow -->
@@ -485,299 +498,23 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    toastr.options = {
-      "closeButton": true,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": true,
-      "positionClass": "toast-top-center",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "300",
-      "hideDuration": "1000",
-      "timeOut": "5000",
-      "extendedTimeOut": "1000",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    }
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
   </script>
 </body>
 </html>
