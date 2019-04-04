@@ -165,10 +165,10 @@
                     let items = document.querySelectorAll('#listHolder > span');
                     var listHolderList = document.createElement('ol');
                     items.forEach(function (item) {
-                        let itemWrapper = document.createElement('li');
-                        item.parentNode.insertBefore(itemWrapper, item);
-                        itemWrapper.appendChild(item);
-                        listHolderList.appendChild(itemWrapper);
+                        let wrapper = document.createElement('li');
+                        item.parentNode.insertBefore(wrapper, item);
+                        wrapper.appendChild(item);
+                        listHolderList.appendChild(wrapper);
                     });
                     document.getElementById('listHolder').appendChild(listHolderList);
                     let inputField = document.createElement('input');
@@ -455,16 +455,24 @@
              id="followMouse"></div>
       </div>
       <script>
-      const followMouseBlock = document.getElementById('followMouse');
-      // start the first transition
-      followMouseBlock.style.left = '0';
-      followMouseBlock.style.transitionProperty = 'left';
-      // after the first transition, revert and repeat
-      followMouseBlock.parentElement.closest('div').addEventListener('mousemove', function(event){
-          console.log(event.screenX);
-          followMouseBlock.style.transitionDuration = '2s';
-          followMouseBlock.style.left = event.screenX;
-      });
+        const followMouseBlock = document.getElementById('followMouse');
+        followMouseBlock.style.left = '0';
+        followMouseBlock.style.transitionProperty = 'left';
+        let containerLeft = followMouseBlock.parentElement.closest('div').offsetLeft;
+        let containerWidth = followMouseBlock.parentElement.closest('div').offsetWidth;
+        let followMouseBlockWidth = followMouseBlock.offsetWidth;
+        let maxLeft = containerLeft + containerWidth - followMouseBlockWidth;
+        // after the first transition, revert and repeat
+        followMouseBlock.parentElement.closest('div').addEventListener('mousemove', function(event){
+          if (event.screenX >= containerLeft && event.screenX <= maxLeft) {
+          // console.log('max left is ' + maxLeft);
+          // console.log('mouse at ' + event.screenX);
+          // console.log('Block left is ' + followMouseBlock.style.left )          
+          let newLeft = event.screenX - containerLeft;
+          followMouseBlock.style.left = newLeft + 'px';
+
+          }
+        });
       </script>
     </div><!-- END OF Part 6 -->
     <!-- Part 7: Name selector -->
@@ -501,6 +509,91 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
