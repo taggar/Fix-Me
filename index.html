@@ -470,7 +470,6 @@
           // console.log('Block left is ' + followMouseBlock.style.left )          
           let newLeft = event.screenX - containerLeft;
           followMouseBlock.style.left = newLeft + 'px';
-
           }
         });
       </script>
@@ -486,7 +485,17 @@
         <div id="target"></div>
       </div>
       <script>
-            // Write your code here
+            const p7target = document.getElementById('target');
+            let theForm = document.createElement('form');
+            let theLabel = document.createElement('label');
+            let theResult = document.createElement('input');
+            theLabel.textContent = 'Enter your first name:';
+            theResult.readOnly = true;
+            console.dir(theResult);
+            theForm.appendChild(theLabel);
+            theForm.innerHTML += '<br />';
+            theForm.appendChild(theResult);
+            p7target.appendChild(theForm);
       </script>
     </div><!-- END OF Part 7 -->
     <!-- Part 8: Name selector2 -->
@@ -509,6 +518,23 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
