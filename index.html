@@ -423,22 +423,23 @@
       </div>
       <script>
           const moveAnimationBlock = document.getElementById('moveAnimation');
-          // start the first transition
-          if (moveAnimationBlock.style.left != '100%') {
+          // start the first transition - need a timeout to allow things to be displayed at the starting position without already triggering the new property values
+          setTimeout(function(){
             moveAnimationBlock.style.left = '0';
-            moveAnimationBlock.style.transitionProperty = 'left';
-            //moveAnimationBlock.style.transitionDelay = '2s';
             moveAnimationBlock.style.transitionDuration = '2s';
-            moveAnimationBlock.style.left = '100%';
-          }
+            moveAnimationBlock.style.transitionTimingFunction = 'ease-in-out';
+         },500)
           // after the first transition, revert and repeat
           moveAnimationBlock.addEventListener('transitionend', function(){
             if (moveAnimationBlock.style.left != '100%') {
-              moveAnimationBlock.style.transitionDuration = '2s';
+              moveAnimationBlock.style.transitionDuration  = '2s';
               moveAnimationBlock.style.left = '100%';
+              // Caution: colour change results in transitionend event not being triggered
+              // moveAnimationBlock.style.backgroundColor = '#F00';
             } else {
               moveAnimationBlock.style.transitionDuration = '5s';
-              moveAnimationBlock.style.left = '0%';
+              moveAnimationBlock.style.left = '0';
+              // moveAnimationBlock.style.backgroundColor = '#0F0';
             }
           });
       </script>
@@ -494,15 +495,106 @@
       </script>
     </div><!-- END OF Part 8 -->
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script crossorigin="anonymous"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
   <script crossorigin="anonymous"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
