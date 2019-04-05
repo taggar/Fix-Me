@@ -467,7 +467,7 @@
           if (event.screenX >= containerLeft && event.screenX <= maxLeft) {
           // console.log('max left is ' + maxLeft);
           // console.log('mouse at ' + event.screenX);
-          // console.log('Block left is ' + followMouseBlock.style.left )          
+          // console.log('Block left is ' + followMouseBlock.style.left )
           let newLeft = event.screenX - containerLeft;
           followMouseBlock.style.left = newLeft + 'px';
           }
@@ -482,7 +482,9 @@
              src="input.gif">
         <hr>
         <br>
-        <div id="target"></div>
+        <div id="target">
+
+        </div>
       </div>
       <script>
             const p7target = document.getElementById('target');
@@ -498,12 +500,24 @@
             theForm.innerHTML += '<br />';
             theForm.appendChild(theResult);
             theForm.appendChild(theButton);
+            let slider = document.createElement('input');
+            slider.type = 'range';
+            slider.min = 'A';
+            slider.max = 'Z';
+            //slider.textContent = slider.value;
+            theForm.appendChild(slider);
             p7target.appendChild(theForm);
-            // let slider = document.createElement('input');
-            // slider.type = 'range';
-            // slider.min = 'A';
-            // slider.max = 'Z';
-            // theForm.appendChild(slider);
+
+
+            /*
+
+            https://stackoverflow.com/questions/52127833/write-value-of-range-to-thumb-slider
+            <form>
+              <input type="range" name="foo" min="A" max="Z">
+              <output for="foo" onforminput="value = foo.value;"></output>
+            </form>
+            */
+
             //<input type="range" id="start" name="volume" min="0" max="11">
 
       </script>
@@ -522,11 +536,11 @@
       </script>
     </div><!-- END OF Part 8 -->
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script crossorigin="anonymous"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
   <script>
 
 
