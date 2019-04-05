@@ -488,14 +488,24 @@
             const p7target = document.getElementById('target');
             let theForm = document.createElement('form');
             let theLabel = document.createElement('label');
-            let theResult = document.createElement('input');
             theLabel.textContent = 'Enter your first name:';
+            let theResult = document.createElement('input');
             theResult.readOnly = true;
+            let theButton = document.createElement('button');
+            theButton.textContent = 'Add letter';
             console.dir(theResult);
             theForm.appendChild(theLabel);
             theForm.innerHTML += '<br />';
             theForm.appendChild(theResult);
+            theForm.appendChild(theButton);
             p7target.appendChild(theForm);
+            // let slider = document.createElement('input');
+            // slider.type = 'range';
+            // slider.min = 'A';
+            // slider.max = 'Z';
+            // theForm.appendChild(slider);
+            //<input type="range" id="start" name="volume" min="0" max="11">
+
       </script>
     </div><!-- END OF Part 7 -->
     <!-- Part 8: Name selector2 -->
@@ -518,6 +528,10 @@
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> 
   <script>
+
+
+
+
 
 
 
