@@ -468,18 +468,20 @@
         </div>
       </div>
       <script>
-        const p7target = document.getElementById('target');
-        const alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-        let idCounter = 0;
+        var prefix = 'p7';
+        var p7target = document.getElementById('target');
+        var alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        var idCounter = 0;
 
         // Create the form and its elements
-        let theForm = document.createElement('form'),
+        var theForm = document.createElement('form'),
           theLabel = document.createElement('label'),
           theResult = document.createElement('input'),
           theButton = document.createElement('button');
 
         theLabel.textContent = 'Enter your first name:';
         theResult.readOnly = true;
+        theResult.id = prefix + 'result';
         theButton.textContent = 'Add letter';
         theButton.type = 'button';
         theButton.style.display = 'block';
@@ -498,7 +500,7 @@
           slider.min = '0';
           slider.max = '25';
           slider.step = '1';
-          slider.id = 'inp' + id;
+          slider.id = prefix + 'inp' + id;
           slider.value = '-1';
           slider.addEventListener('input', function () {
             let sliderId = event.target.id;
@@ -510,7 +512,7 @@
 
         function sliderValue(id) {
           let sliderValue = document.createElement('output');
-          sliderValue.setAttribute('for', 'inp' + id);
+          sliderValue.setAttribute('for', prefix + 'inp' + id);
           sliderValue.innerHTML = '&nbsp;';
           return sliderValue;
         }
@@ -527,6 +529,7 @@
           let combo = event.target.previousSibling;
           let theInput = combo.lastChild;
           let theOutput = combo.firstChild;
+          let theResult = event.target.parentNode.querySelector('input[readonly]');
           if (theOutput.innerHTML != '&nbsp;') {
             theInput.disabled = true;
             theResult.value += alphabet[theInput.value];
@@ -534,18 +537,6 @@
             event.target.insertAdjacentElement('beforebegin', sliderCombo(idCounter));
           }
         });
-
-        /*
-
-        https://stackoverflow.com/questions/52127833/write-value-of-range-to-thumb-slider
-        <form>
-          <input type="range" name="foo" min="A" max="Z">
-          <output for="foo" onforminput="value = foo.value;"></output>
-        </form>
-        */
-
-            //<input type="range" id="start" name="volume" min="0" max="11">
-
       </script>
     </div><!-- END OF Part 7 -->
     <!-- Part 8: Name selector2 -->
@@ -559,7 +550,75 @@
         <div id="target2"></div>
       </div>
       <script>
-            // You can put at most one line here
+        var prefix = 'p8';
+        var p8target = document.getElementById('target2');
+        var alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        var idCounter = 0;
+
+        // Create the form and its elements
+        var theForm = document.createElement('form'),
+          theLabel = document.createElement('label'),
+          theResult = document.createElement('input'),
+          theButton = document.createElement('button');
+
+        theLabel.textContent = 'Enter your first name:';
+        theResult.readOnly = true;
+        theResult.id = prefix + 'result';
+        theButton.textContent = 'Add letter';
+        theButton.type = 'button';
+        theButton.style.display = 'block';
+
+        theForm.appendChild(theLabel);
+        theForm.innerHTML += '<br />';
+        theForm.appendChild(theResult);
+        //slider.textContent = slider.value;
+        theForm.appendChild(sliderCombo(idCounter));
+        theForm.appendChild(theButton);
+        p8target.appendChild(theForm);
+
+        function slider(id) {
+          let slider = document.createElement('input');
+          slider.type = 'range';
+          slider.min = '0';
+          slider.max = '25';
+          slider.step = '1';
+          slider.id = prefix + 'inp' + id;
+          slider.value = '-1';
+          slider.addEventListener('input', function () {
+            let sliderId = event.target.id;
+            let sliderPos = event.target.value;
+            document.querySelector('output[for =\'' + sliderId + '\']').value = alphabet[sliderPos];
+          });
+          return slider;
+        }
+
+        function sliderValue(id) {
+          let sliderValue = document.createElement('output');
+          sliderValue.setAttribute('for', prefix + 'inp' + id);
+          sliderValue.innerHTML = '&nbsp;';
+          return sliderValue;
+        }
+
+        function sliderCombo(id) {
+          let sliderCombo = document.createElement('div');
+          sliderCombo.appendChild(sliderValue(id));
+          sliderCombo.innerHTML += '&nbsp;';
+          sliderCombo.appendChild(slider(id));
+          return sliderCombo;
+        }
+
+        theButton.addEventListener('click', function () {
+          let combo = event.target.previousSibling;
+          let theInput = combo.lastChild;
+          let theOutput = combo.firstChild;
+          let theResult = event.target.parentNode.querySelector('input[readonly]');
+          if (theOutput.innerHTML != '&nbsp;') {
+            theInput.disabled = true;
+            theResult.value += alphabet[theInput.value];
+            idCounter = ++idCounter;
+            event.target.insertAdjacentElement('beforebegin', sliderCombo(idCounter));
+          }
+        });
       </script>
     </div><!-- END OF Part 8 -->
   </div>
