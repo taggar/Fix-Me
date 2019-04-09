@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Fix me!</title>
-  <link crossorigin="anonymous"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        rel="stylesheet">
-  <link crossorigin="anonymous"
-        href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-        rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
-        rel="stylesheet">
-  <link href="stylesheet.css"
-        rel="stylesheet">
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+  <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+  <link href="stylesheet.css" rel="stylesheet">
 </head>
+
 <body class="bg-dark pt-4">
-  <div class="container"
-       id="exercisesHolder">
+  <div class="container" id="exercisesHolder">
     <!-- Part 0: The Rules -->
     <div class="row">
       <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4 border">
         <h3>Part 0: The Rules</h3>
-        <p>In this exercise, you will go over the different blocks, read the instructions and apply the necessary javascript code to get to the result.<br>
-        You are not allowed to write anything outside the script tags provided. So keep your code in there!</p>
+        <p>In this exercise, you will go over the different blocks, read the instructions and apply the necessary
+          javascript code to get to the result.<br>
+          You are not allowed to write anything outside the script tags provided. So keep your code in there!</p>
         <h5>How to do these exercies:</h5>
         <ul>
           <li>Read the instructions (Above the line)</li>
@@ -44,21 +40,22 @@
         </ul>
         <hr>
         <br>
-        <label for="greetingsBox">Type your message here: <input class="form-control"
-               id="greetingsBox"
-               type="text"></label>
+        <label for="greetingsBox">Type your message here: <input class="form-control" id="greetingsBox"
+            type="text"></label>
         <div class="col-6 mx-auto p-2 greetingsBoxHolder">
-          <h3><!-- Your message comes here--></h3>
+          <h3>
+            <!-- Your message comes here-->
+          </h3>
         </div>
       </div>
       <script>
-                document.getElementById('greetingsBox').setAttribute('placeholder', 'Sorry, nothing to show');
-                document.getElementById('greetingsBox').addEventListener('keyup', function () {
-                    document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = document.getElementById('greetingsBox').value;
-                    if (document.getElementById('greetingsBox').value == '') {
-                        document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = 'Sorry, nothing to show';
-                    }
-                });
+        document.getElementById('greetingsBox').setAttribute('placeholder', 'Sorry, nothing to show');
+        document.getElementById('greetingsBox').addEventListener('keyup', function () {
+          document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = document.getElementById('greetingsBox').value;
+          if (document.getElementById('greetingsBox').value == '') {
+            document.getElementsByClassName('greetingsBoxHolder')[0].firstChild.textContent = 'Sorry, nothing to show';
+          }
+        });
       </script>
     </div><!-- END OF Part 1 -->
     <!-- Part 2: Interaction with inputs and tables -->
@@ -69,18 +66,16 @@
         <ul>
           <li>When you press enter, check whether all fields have been filled (except remarks)</li>
           <li>If the first condition is met, create a row with this data and allow the user to fill in the next row<br>
-          (so there should always be a row with empty inputs to fill in)</li>
-          <li class="bonus">If you press enter and the conditions aren't met, display a popup saying what's wrong with <a href="https://codeseven.github.io/toastr/demo.html"
-                target="_blank">toastr</a>
+            (so there should always be a row with empty inputs to fill in)</li>
+          <li class="bonus">If you press enter and the conditions aren't met, display a popup saying what's wrong with
+            <a href="https://codeseven.github.io/toastr/demo.html" target="_blank">toastr</a>
           </li>
-          <li class="bonus">Add a cross to the last cell, that when clicked, deletes the row again (Do NOT use the HTML onclick attribute!)</li>
+          <li class="bonus">Add a cross to the last cell, that when clicked, deletes the row again (Do NOT use the HTML
+            onclick attribute!)</li>
         </ul>
         <hr>
         <br>
-        <table cellspacing="0"
-               class="table table-striped table-bordered"
-               id="pizzaOrders"
-               width="100%">
+        <table cellspacing="0" class="table table-striped table-bordered" id="pizzaOrders" width="100%">
           <thead>
             <tr>
               <th>Name</th>
@@ -91,54 +86,42 @@
           </thead>
           <tbody>
             <tr id="emptyRow">
-              <td><input class="form-control"
-                     id="name"
-                     placeholder="Fill in your name"
-                     type="text"></td>
-              <td><input class="form-control"
-                     id="pizza"
-                     placeholder="Fill in your pizza choice"
-                     type="text"></td>
-              <td><input class="form-control"
-                     id="size"
-                     placeholder="Fill in your chosen size"
-                     type="text"></td>
-              <td><input class="form-control"
-                     id="remarks"
-                     placeholder="Fill in your remarks"
-                     type="text"></td>
+              <td><input class="form-control" id="name" placeholder="Fill in your name" type="text"></td>
+              <td><input class="form-control" id="pizza" placeholder="Fill in your pizza choice" type="text"></td>
+              <td><input class="form-control" id="size" placeholder="Fill in your chosen size" type="text"></td>
+              <td><input class="form-control" id="remarks" placeholder="Fill in your remarks" type="text"></td>
             </tr>
           </tbody>
         </table>
       </div>
       <script>
-                let inputRow = document.getElementById('emptyRow');
-                let nameInput = inputRow.querySelector('#name');
-                let pizzaInput = inputRow.querySelector('#pizza');
-                let sizeInput = inputRow.querySelector('#size');
-                inputRow.addEventListener('keyup', function (event) {
-                    if (event.key === "Enter") {
-                        if (nameInput.value == '' || pizzaInput.value == '' || sizeInput.value == '') {
-                            toastr['error']('Fill in Name, PIzza, and Size', 'Missing input ...');
-                            return;
-                        } else {
-                            let newRow = document.createElement('tr');
-                            Array.from(inputRow.querySelectorAll('input')).forEach(function (input) {
-                                let cell = document.createElement('td');
-                                cell.textContent = input.value;
-                                newRow.append(cell);
-                                input.value = '';
-                            });
-                            let deleteButton = document.createElement('td');
-                            deleteButton.innerHTML = '<button class=\'deleteButton\'>X<\/button>'
-                            newRow.append(deleteButton);
-                            deleteButton.addEventListener('click', function (event) {
-                                event.target.closest('tr').remove();
-                            });
-                            inputRow.parentNode.appendChild(newRow);
-                        }
-                    }
-                });
+        let inputRow = document.getElementById('emptyRow');
+        let nameInput = inputRow.querySelector('#name');
+        let pizzaInput = inputRow.querySelector('#pizza');
+        let sizeInput = inputRow.querySelector('#size');
+        inputRow.addEventListener('keyup', function (event) {
+          if (event.key === "Enter") {
+            if (nameInput.value == '' || pizzaInput.value == '' || sizeInput.value == '') {
+              toastr['error']('Fill in Name, PIzza, and Size', 'Missing input ...');
+              return;
+            } else {
+              let newRow = document.createElement('tr');
+              Array.from(inputRow.querySelectorAll('input')).forEach(function (input) {
+                let cell = document.createElement('td');
+                cell.textContent = input.value;
+                newRow.append(cell);
+                input.value = '';
+              });
+              let deleteButton = document.createElement('td');
+              deleteButton.innerHTML = '<button class=\'deleteButton\'>X<\/button>'
+              newRow.append(deleteButton);
+              deleteButton.addEventListener('click', function (event) {
+                event.target.closest('tr').remove();
+              });
+              inputRow.parentNode.appendChild(newRow);
+            }
+          }
+        });
       </script>
     </div><!-- END OF Part 2 -->
     <!-- Part 3: Element alterations -->
@@ -150,43 +133,45 @@
           <li>Fix it up so that it is an actual HTML list</li>
           <li>Make it so the user can type what he / she wants in the final option</li>
           <li>Launch the above transformation once the button (#launchMe) is pushed</li>
-          <li class="bonus">"Choose your final ingredient" should be placed as placeholder text in the input when it's empty</li>
-          <li class="bonus">When you go away from the input (click somewhere else), if the input is not empty, it should change into a regular LI item with the content of the input</li>
+          <li class="bonus">"Choose your final ingredient" should be placed as placeholder text in the input when it's
+            empty</li>
+          <li class="bonus">When you go away from the input (click somewhere else), if the input is not empty, it should
+            change into a regular LI item with the content of the input</li>
         </ul>
         <hr>
         <br>
-        <button class="btn btn-success play-button"
-             id="launchMe">Launch me</button>
-        <p id="listHolder">This is what you need to make delicious spaghetti: <span>Pasta</span><span>Tomato Sauce</span><span>Cheese</span><span>Choose your final ingredient</span></p><br>
+        <button class="btn btn-success play-button" id="launchMe">Launch me</button>
+        <p id="listHolder">This is what you need to make delicious spaghetti: <span>Pasta</span><span>Tomato
+            Sauce</span><span>Cheese</span><span>Choose your final ingredient</span></p><br>
         <br>
       </div>
       <script>
-                document.getElementById('launchMe').addEventListener('click', function () {
-                    let items = document.querySelectorAll('#listHolder > span');
-                    var listHolderList = document.createElement('ol');
-                    items.forEach(function (item) {
-                        let wrapper = document.createElement('li');
-                        item.parentNode.insertBefore(wrapper, item);
-                        wrapper.appendChild(item);
-                        listHolderList.appendChild(wrapper);
-                    });
-                    document.getElementById('listHolder').appendChild(listHolderList);
-                    let inputField = document.createElement('input');
-                    inputField.id = 'favIngredient';
-                    inputField.placeholder = 'Choose your final ingredient';
-                    listHolderList.lastChild.textContent += ': ';
-                    listHolderList.lastChild.appendChild(inputField);
-                    inputField.addEventListener('blur', function () {
-                        if (inputField.value.trim() != '') {
-                            console.log('value: ' + inputField.value.trim);
-                            listHolderList.lastChild.removeChild(inputField);
-                            listHolderList.lastChild.textContent = 'Your final ingredient: ' + inputField.value;
-                        } else {
-                            inputField.value = '';
-                        }
-                    });
+        document.getElementById('launchMe').addEventListener('click', function () {
+          let items = document.querySelectorAll('#listHolder > span');
+          var listHolderList = document.createElement('ol');
+          items.forEach(function (item) {
+            let wrapper = document.createElement('li');
+            item.parentNode.insertBefore(wrapper, item);
+            wrapper.appendChild(item);
+            listHolderList.appendChild(wrapper);
+          });
+          document.getElementById('listHolder').appendChild(listHolderList);
+          let inputField = document.createElement('input');
+          inputField.id = 'favIngredient';
+          inputField.placeholder = 'Choose your final ingredient';
+          listHolderList.lastChild.textContent += ': ';
+          listHolderList.lastChild.appendChild(inputField);
+          inputField.addEventListener('blur', function () {
+            if (inputField.value.trim() != '') {
+              console.log('value: ' + inputField.value.trim);
+              listHolderList.lastChild.removeChild(inputField);
+              listHolderList.lastChild.textContent = 'Your final ingredient: ' + inputField.value;
+            } else {
+              inputField.value = '';
+            }
+          });
 
-                });
+        });
 
       </script>
     </div><!-- END OF Part 3 -->
@@ -197,18 +182,14 @@
         <p>Below this, you have a table with some random data, here's what you need to do:</p>
         <ul>
           <li>When you type something in the searchInput, the table rows need to be filtered by the typed text</li>
-          <li>Add checkboxes to each header (thead -&gt; th ) when unchecked the columns disappear from the table (default = checked)</li>
+          <li>Add checkboxes to each header (thead -&gt; th ) when unchecked the columns disappear from the table
+            (default = checked)</li>
           <li class="bonus">Highlight the found text in the table row</li>
         </ul>
         <hr>
         <br>
-        <label>Search in this table:<input class="form-control"
-               id="searchInput"
-               type="search"></label>
-        <table cellspacing="0"
-               class="table table-striped table-bordered"
-               id="searchTable"
-               width="100%">
+        <label>Search in this table:<input class="form-control" id="searchInput" type="search"></label>
+        <table cellspacing="0" class="table table-striped table-bordered" id="searchTable" width="100%">
           <thead>
             <tr>
               <th class="th-sm">Name</th>
@@ -368,91 +349,91 @@
         </table>
       </div>
       <script>
-                const theTable = document.getElementById('searchTable');
-                const theRows = theTable.querySelectorAll('tr');
-                const theTableBody = theTable.querySelector('tbody');
-                const theTableHead = theTable.querySelector('thead');
-                const theTableBodyRows = theTableBody.querySelectorAll('tr');
-                const searchInput = document.getElementById('searchInput');
-                // Listen to input in the search box and filter accordingly
-                searchInput.addEventListener('keyup', function () {
-                    let searchedFor = searchInput.value;
-                    theTableBodyRows.forEach(function (aRow) {
-                        if (aRow.textContent.toLowerCase().indexOf(searchedFor.toLowerCase()) == -1) {
-                            aRow.style.display = 'none';
-                        } else {
-                            aRow.style.display = 'table-row';
-                            let regex = new RegExp(searchedFor, "gi");
-                            [...aRow.getElementsByTagName('td')].forEach(function (aCell) {
-                                console.log(aCell.textContent);
-                                aCell.innerHTML = aCell.textContent.replace(regex, '<span style=\'color: red; font-weight: bold\'>$&<\/span>');
-                                console.log(aCell.textContent);
-                            });
-                        }
-                    });
-                });
+        const theTable = document.getElementById('searchTable');
+        const theRows = theTable.querySelectorAll('tr');
+        const theTableBody = theTable.querySelector('tbody');
+        const theTableHead = theTable.querySelector('thead');
+        const theTableBodyRows = theTableBody.querySelectorAll('tr');
+        const searchInput = document.getElementById('searchInput');
+        // Listen to input in the search box and filter accordingly
+        searchInput.addEventListener('keyup', function () {
+          let searchedFor = searchInput.value;
+          theTableBodyRows.forEach(function (aRow) {
+            if (aRow.textContent.toLowerCase().indexOf(searchedFor.toLowerCase()) == -1) {
+              aRow.style.display = 'none';
+            } else {
+              aRow.style.display = 'table-row';
+              let regex = new RegExp(searchedFor, "gi");
+              [...aRow.getElementsByTagName('td')].forEach(function (aCell) {
+                console.log(aCell.textContent);
+                aCell.innerHTML = aCell.textContent.replace(regex, '<span style=\'color: red; font-weight: bold\'>$&<\/span>');
+                console.log(aCell.textContent);
+              });
+            }
+          });
+        });
 
-                // Checkboxes on columns and listen to click event
-                Array.from(theTableHead.querySelectorAll('th')).forEach(function (aHead) {
-                    let checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.checked = true;
-                    aHead.innerHTML += '&nbsp;';
-                    aHead.appendChild(checkbox);
-                    checkbox.addEventListener('click', function () {
-                        let colNumber = Array.from(theTableHead.querySelectorAll('input')).indexOf(checkbox);
-                        console.log(checkbox);
-                        console.log(colNumber);
-                        theRows.forEach(function (row) {
-                            row.querySelectorAll('th, td')[colNumber].remove();
-                        });
+        // Checkboxes on columns and listen to click event
+        Array.from(theTableHead.querySelectorAll('th')).forEach(function (aHead) {
+          let checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.checked = true;
+          aHead.innerHTML += '&nbsp;';
+          aHead.appendChild(checkbox);
+          checkbox.addEventListener('click', function () {
+            let colNumber = Array.from(theTableHead.querySelectorAll('input')).indexOf(checkbox);
+            console.log(checkbox);
+            console.log(colNumber);
+            theRows.forEach(function (row) {
+              row.querySelectorAll('th, td')[colNumber].remove();
+            });
 
-                    });
-                })
+          });
+        })
       </script>
     </div><!-- END OF Part 4 -->
     <!-- Part 5: Make it move -->
     <div class="row">
       <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
         <h3>Part 5: Make it move</h3>
-        <p>Below this, you have a div that needs to move left to right using JS for the motion. Make it reach the end in 2 seconds, then return in 5s. Repeat that forever.</p>
+        <p>Below this, you have a div that needs to move left to right using JS for the motion. Make it reach the end in
+          2 seconds, then return in 5s. Repeat that forever.</p>
         <hr>
         <br>
-        <div class="block"
-             id="moveAnimation"></div>
+        <div class="block" id="moveAnimation"></div>
       </div>
       <script>
-          const moveAnimationBlock = document.getElementById('moveAnimation');
-          // start the first transition - need a timeout to allow things to be displayed at the starting position without already triggering the new property values
-          setTimeout(function(){
-            moveAnimationBlock.style.left = '0';
+        const moveAnimationBlock = document.getElementById('moveAnimation');
+        // start the first transition - need a timeout to allow things to be displayed at the starting position without already triggering the new property values
+        setTimeout(function () {
+          moveAnimationBlock.style.left = '0';
+          moveAnimationBlock.style.transitionDuration = '2s';
+          moveAnimationBlock.style.transitionTimingFunction = 'ease-in-out';
+        }, 500)
+        // after the first transition, revert and repeat
+        moveAnimationBlock.addEventListener('transitionend', function () {
+          if (moveAnimationBlock.style.left != '100%') {
             moveAnimationBlock.style.transitionDuration = '2s';
-            moveAnimationBlock.style.transitionTimingFunction = 'ease-in-out';
-         },500)
-          // after the first transition, revert and repeat
-          moveAnimationBlock.addEventListener('transitionend', function(){
-            if (moveAnimationBlock.style.left != '100%') {
-              moveAnimationBlock.style.transitionDuration  = '2s';
-              moveAnimationBlock.style.left = '100%';
-              // Caution: colour change results in transitionend event not being triggered
-              // moveAnimationBlock.style.backgroundColor = '#F00';
-            } else {
-              moveAnimationBlock.style.transitionDuration = '5s';
-              moveAnimationBlock.style.left = '0';
-              // moveAnimationBlock.style.backgroundColor = '#0F0';
-            }
-          });
+            moveAnimationBlock.style.left = '100%';
+            // Caution: colour change results in transitionend event not being triggered
+            // moveAnimationBlock.style.backgroundColor = '#F00';
+          } else {
+            moveAnimationBlock.style.transitionDuration = '5s';
+            moveAnimationBlock.style.left = '0';
+            // moveAnimationBlock.style.backgroundColor = '#0F0';
+          }
+        });
       </script>
     </div><!-- END OF Part 5 -->
     <!-- Part 6: Make it follow -->
     <div class="row">
       <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
         <h3>Part 6: make it follow</h3>
-        <p>Below this, you have a div that needs to move left to right using JS for the motion. It should follow the mouse horizontally.</p>
+        <p>Below this, you have a div that needs to move left to right using JS for the motion. It should follow the
+          mouse horizontally.</p>
         <hr>
         <br>
-        <div class="block"
-             id="followMouse"></div>
+        <div class="block" id="followMouse"></div>
       </div>
       <script>
         const followMouseBlock = document.getElementById('followMouse');
@@ -463,13 +444,13 @@
         let followMouseBlockWidth = followMouseBlock.offsetWidth;
         let maxLeft = containerLeft + containerWidth - followMouseBlockWidth;
         // after the first transition, revert and repeat
-        followMouseBlock.parentElement.closest('div').addEventListener('mousemove', function(event){
+        followMouseBlock.parentElement.closest('div').addEventListener('mousemove', function (event) {
           if (event.screenX >= containerLeft && event.screenX <= maxLeft) {
-          // console.log('max left is ' + maxLeft);
-          // console.log('mouse at ' + event.screenX);
-          // console.log('Block left is ' + followMouseBlock.style.left )
-          let newLeft = event.screenX - containerLeft;
-          followMouseBlock.style.left = newLeft + 'px';
+            // console.log('max left is ' + maxLeft);
+            // console.log('mouse at ' + event.screenX);
+            // console.log('Block left is ' + followMouseBlock.style.left )
+            let newLeft = event.screenX - containerLeft;
+            followMouseBlock.style.left = newLeft + 'px';
           }
         });
       </script>
@@ -478,8 +459,8 @@
     <div class="row">
       <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
         <h3>Part 7: Sliiiiiders</h3>
-        <p>Recreate this very intuitive user interface. Insert the DOM nodes (html elements) using document.createElement();</p><img alt="Interface"
-             src="input.gif">
+        <p>Recreate this very intuitive user interface. Insert the DOM nodes (html elements) using
+          document.createElement();</p><img alt="Interface" src="input.gif">
         <hr>
         <br>
         <div id="target">
@@ -487,36 +468,65 @@
         </div>
       </div>
       <script>
-            const p7target = document.getElementById('target');
-            let theForm = document.createElement('form');
-            let theLabel = document.createElement('label');
-            theLabel.textContent = 'Enter your first name:';
-            let theResult = document.createElement('input');
-            theResult.readOnly = true;
-            let theButton = document.createElement('button');
-            theButton.textContent = 'Add letter';
-            console.dir(theResult);
-            theForm.appendChild(theLabel);
-            theForm.innerHTML += '<br />';
-            theForm.appendChild(theResult);
-            theForm.appendChild(theButton);
-            let slider = document.createElement('input');
-            slider.type = 'range';
-            slider.min = 'A';
-            slider.max = 'Z';
-            //slider.textContent = slider.value;
-            theForm.appendChild(slider);
-            p7target.appendChild(theForm);
+        const p7target = document.getElementById('target');
+        const alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        let theForm = document.createElement('form'),
+          theLabel = document.createElement('label'),
+          theResult = document.createElement('input'),
+          theButton = document.createElement('button');
 
+        let idCounter = 0;
 
-            /*
+        theLabel.textContent = 'Enter your first name:';
+        theResult.readOnly = true;
+        theButton.textContent = 'Add letter';
+        theButton.type = 'button';
 
-            https://stackoverflow.com/questions/52127833/write-value-of-range-to-thumb-slider
-            <form>
-              <input type="range" name="foo" min="A" max="Z">
-              <output for="foo" onforminput="value = foo.value;"></output>
-            </form>
-            */
+        theForm.appendChild(theLabel);
+        theForm.innerHTML += '<br />';
+        theForm.appendChild(theResult);
+        //slider.textContent = slider.value;
+        theForm.appendChild(sliderValue(idCounter));
+        theForm.appendChild(slider(idCounter));
+        theForm.appendChild(theButton);
+        p7target.appendChild(theForm);
+
+        function slider(id) {
+          let slider = document.createElement('input');
+          slider.type = 'range';
+          slider.min = '0';
+          slider.max = '26';
+          slider.step = '1';
+          slider.id = 'inp' + id;
+          slider.addEventListener('input', function () {
+            let sliderId = event.target.id;
+            let sliderPos = event.target.value;
+            document.querySelector('output[for =\'' + sliderId + '\']').value = alphabet[sliderPos];
+          });
+          return slider;
+        }
+
+        function sliderValue(id) {
+          let sliderValue = document.createElement('output');
+          sliderValue.setAttribute('for', 'inp' + id);
+          return sliderValue;
+        }
+
+        theButton.addEventListener('click', function () {
+          let theInput = event.target.previousSibling;
+          let theInputId = theInput.id;
+          theResult.value += alphabet[theInput.value];
+
+        });
+
+        /*
+
+        https://stackoverflow.com/questions/52127833/write-value-of-range-to-thumb-slider
+        <form>
+          <input type="range" name="foo" min="A" max="Z">
+          <output for="foo" onforminput="value = foo.value;"></output>
+        </form>
+        */
 
             //<input type="range" id="start" name="volume" min="0" max="11">
 
@@ -526,7 +536,8 @@
     <div class="row">
       <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4">
         <h3>Part 8: Sliiiiiders again</h3>
-        <p>Put the exercise of above here again. They should both keep working. And you should only write one more line. In other words you cannot hard code ids 😉 If needed, rewrite the above code.</p>
+        <p>Put the exercise of above here again. They should both keep working. And you should only write one more line.
+          In other words you cannot hard code ids 😉 If needed, rewrite the above code.</p>
         <hr>
         <br>
         <div id="target2"></div>
@@ -537,237 +548,30 @@
     </div><!-- END OF Part 8 -->
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script crossorigin="anonymous"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
   <script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-center",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": true,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
   </script>
 </body>
+
 </html>
