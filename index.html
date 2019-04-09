@@ -496,9 +496,10 @@
           let slider = document.createElement('input');
           slider.type = 'range';
           slider.min = '0';
-          slider.max = '26';
+          slider.max = '25';
           slider.step = '1';
           slider.id = 'inp' + id;
+          slider.value = '-1';
           slider.addEventListener('input', function () {
             let sliderId = event.target.id;
             let sliderPos = event.target.value;
@@ -523,11 +524,15 @@
         }
 
         theButton.addEventListener('click', function () {
-          let theInput = event.target.previousSibling.lastChild;
-          theInput.disabled = true;
-          theResult.value += alphabet[theInput.value];
-          idCounter = ++idCounter;
-          event.target.insertAdjacentElement('beforebegin', sliderCombo(idCounter));
+          let combo = event.target.previousSibling;
+          let theInput = combo.lastChild;
+          let theOutput = combo.firstChild;
+          if (theOutput.innerHTML != '&nbsp;') {
+            theInput.disabled = true;
+            theResult.value += alphabet[theInput.value];
+            idCounter = ++idCounter;
+            event.target.insertAdjacentElement('beforebegin', sliderCombo(idCounter));
+          }
         });
 
         /*
