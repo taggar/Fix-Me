@@ -470,24 +470,25 @@
       <script>
         const p7target = document.getElementById('target');
         const alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        let idCounter = 0;
+
+        // Create the form and its elements
         let theForm = document.createElement('form'),
           theLabel = document.createElement('label'),
           theResult = document.createElement('input'),
           theButton = document.createElement('button');
 
-        let idCounter = 0;
-
         theLabel.textContent = 'Enter your first name:';
         theResult.readOnly = true;
         theButton.textContent = 'Add letter';
         theButton.type = 'button';
+        theButton.style.display = 'block';
 
         theForm.appendChild(theLabel);
         theForm.innerHTML += '<br />';
         theForm.appendChild(theResult);
         //slider.textContent = slider.value;
-        theForm.appendChild(sliderValue(idCounter));
-        theForm.appendChild(slider(idCounter));
+        theForm.appendChild(sliderCombo(idCounter));
         theForm.appendChild(theButton);
         p7target.appendChild(theForm);
 
@@ -509,14 +510,24 @@
         function sliderValue(id) {
           let sliderValue = document.createElement('output');
           sliderValue.setAttribute('for', 'inp' + id);
+          sliderValue.innerHTML = '&nbsp;';
           return sliderValue;
         }
 
-        theButton.addEventListener('click', function () {
-          let theInput = event.target.previousSibling;
-          let theInputId = theInput.id;
-          theResult.value += alphabet[theInput.value];
+        function sliderCombo(id) {
+          let sliderCombo = document.createElement('div');
+          sliderCombo.appendChild(sliderValue(id));
+          sliderCombo.innerHTML += '&nbsp;';
+          sliderCombo.appendChild(slider(id));
+          return sliderCombo;
+        }
 
+        theButton.addEventListener('click', function () {
+          let theInput = event.target.previousSibling.lastChild;
+          theInput.disabled = true;
+          theResult.value += alphabet[theInput.value];
+          idCounter = ++idCounter;
+          event.target.insertAdjacentElement('beforebegin', sliderCombo(idCounter));
         });
 
         /*
