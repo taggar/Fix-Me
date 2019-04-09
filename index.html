@@ -365,12 +365,21 @@
               aRow.style.display = 'table-row';
               let regex = new RegExp(searchedFor, "gi");
               [...aRow.getElementsByTagName('td')].forEach(function (aCell) {
-                console.log(aCell.textContent);
                 aCell.innerHTML = aCell.textContent.replace(regex, '<span style=\'color: red; font-weight: bold\'>$&<\/span>');
-                console.log(aCell.textContent);
               });
             }
           });
+        });
+        searchInput.addEventListener('search', function () {
+          if (searchInput.value == '') {
+            theTableBodyRows.forEach(function (aRow) {
+              aRow.querySelectorAll('span').forEach(function (span) {
+                console.log(span);
+                span.outerHTML = span.innerHTML;
+              });
+              aRow.style.display = 'table-row';
+            });
+          }
         });
 
         // Checkboxes on columns and listen to click event
