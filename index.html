@@ -487,7 +487,6 @@
             theResult = document.createElement('input'),
             theButton = document.createElement('button');
 
-          target.appendChild(theForm);
           theLabel.textContent = 'Enter your first name:';
           theLabel.style.display = 'block';
 
@@ -500,6 +499,7 @@
           theButton.style.display = 'block';
 
           // Put all elements on the form and add the form
+          target.appendChild(theForm);
           theForm.appendChild(theLabel);
           theForm.appendChild(theResult);
           let ResultBox = target.querySelector('input');
@@ -573,22 +573,25 @@
             theResult = document.createElement('input'),
             theButton = document.createElement('button');
 
-          target.appendChild(theForm);
           theLabel.textContent = 'Enter your first name:';
           theLabel.style.display = 'block';
-          theForm.appendChild(theLabel);
 
           theResult.readOnly = true;
           theResult.style.display = 'block';
           theResult.style.marginBottom = '1rem';
-          theForm.appendChild(theResult);
-
-          theForm.appendChild(sliderCombo());
 
           theButton.textContent = 'Add letter';
           theButton.type = 'button';
           theButton.style.display = 'block';
+
+          // Put all elements on the form and add the form
+          target.appendChild(theForm);
+          theForm.appendChild(theLabel);
+          theForm.appendChild(theResult);
+          let ResultBox = target.querySelector('input');
+          theForm.appendChild(sliderCombo());
           theForm.appendChild(theButton);
+
 
           // Make a slider, and have it update the accompanying slidervalue
           function slider() {
@@ -633,7 +636,6 @@
             }
           });
         });
-
       </script>
     </div><!-- END OF Part 8 -->
   </div>
