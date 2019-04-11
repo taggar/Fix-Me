@@ -477,75 +477,78 @@
         </div>
       </div>
       <script>
-        var target = document.getElementById('target');
-        var alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        document.addEventListener("DOMContentLoaded", function () {
+          let target = document.getElementById('target');
+          let alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
-        // Create the form and its elements
-        var theForm = document.createElement('form'),
-          theLabel = document.createElement('label'),
-          theResult = document.createElement('input'),
-          theButton = document.createElement('button');
+          // Create the form and its elements
+          let theForm = document.createElement('form'),
+            theLabel = document.createElement('label'),
+            theResult = document.createElement('input'),
+            theButton = document.createElement('button');
 
-        theLabel.textContent = 'Enter your first name:';
-        theLabel.style.display = 'block';
+          target.appendChild(theForm);
+          theLabel.textContent = 'Enter your first name:';
+          theLabel.style.display = 'block';
 
-        theResult.readOnly = true;
-        theResult.style.display = 'block';
-        theResult.style.marginBottom = '1rem';
+          theResult.readOnly = true;
+          theResult.style.display = 'block';
+          theResult.style.marginBottom = '1rem';
 
-        theButton.textContent = 'Add letter';
-        theButton.type = 'button';
-        theButton.style.display = 'block';
+          theButton.textContent = 'Add letter';
+          theButton.type = 'button';
+          theButton.style.display = 'block';
 
-        // Put all elements on the form and add the form
-        theForm.appendChild(theLabel);
-        theForm.appendChild(theResult);
-        theForm.appendChild(sliderCombo());
-        theForm.appendChild(theButton);
-        target.appendChild(theForm);
+          // Put all elements on the form and add the form
+          theForm.appendChild(theLabel);
+          theForm.appendChild(theResult);
+          let ResultBox = target.querySelector('input');
+          theForm.appendChild(sliderCombo());
+          theForm.appendChild(theButton);
 
 
-        // Make a slider, and have it update the accompanying slidervalue
-        function slider() {
-          let slider = document.createElement('input');
-          slider.type = 'range';
-          slider.min = '0';
-          slider.max = '25';
-          slider.step = '1';
-          slider.value = '-1';
-          let currentResult = theResult.value;
-          slider.addEventListener('input', function () {
-            let sliderPos = event.target.value;
-            slider.parentElement.firstChild.value = alphabet[sliderPos];
-            theResult.value = currentResult + alphabet[sliderPos];
-          });
-          return slider;
-        }
-
-        // Make something to show the curent slider value
-        function sliderValue() {
-          let sliderValue = document.createElement('output');
-          return sliderValue;
-        }
-
-        // Make a slider and its accompanying slidervalue
-        function sliderCombo() {
-          let sliderCombo = document.createElement('div');
-          sliderCombo.appendChild(sliderValue());
-          sliderCombo.innerHTML += '&nbsp;';
-          sliderCombo.appendChild(slider());
-          return sliderCombo;
-        }
-
-        // When the button is clicked, then ... 
-        theButton.addEventListener('click', function () {
-          let combo = event.target.previousSibling;
-          let theOutput = combo.firstChild;
-          let theInput = combo.lastChild;
-          if (theOutput.innerHTML != '') {
-            theInput.disabled = true;
-            event.target.insertAdjacentElement('beforebegin', sliderCombo());
+          // Make a slider, and have it update the accompanying slidervalue
+          function slider() {
+            let slider = document.createElement('input');
+            slider.type = 'range';
+            slider.min = '0';
+            slider.max = '25';
+            slider.step = '1';
+            slider.value = '-1';
+            let currentResult = target.querySelector('input').value;
+            slider.addEventListener('input', function () {
+              let sliderPos = event.target.value;
+              slider.parentElement.firstChild.value = alphabet[sliderPos];
+              target.querySelector('input').value = currentResult + alphabet[sliderPos];
+            });
+            return slider;
           }
+
+          // Make something to show the curent slider value
+          function sliderValue() {
+            let sliderValue = document.createElement('output');
+            return sliderValue;
+          }
+
+          // Make a slider and its accompanying slidervalue
+          function sliderCombo() {
+            let sliderCombo = document.createElement('div');
+            sliderCombo.appendChild(sliderValue());
+            sliderCombo.innerHTML += '&nbsp;';
+            sliderCombo.appendChild(slider());
+            return sliderCombo;
+          }
+
+          // When the button is clicked, then ... 
+          theButton.addEventListener('click', function () {
+            let combo = event.target.previousSibling;
+            let theOutput = combo.firstChild;
+            let theInput = combo.lastChild;
+            if (theOutput.innerHTML != '') {
+              theInput.disabled = true;
+              event.target.insertAdjacentElement('beforebegin', sliderCombo());
+            }
+          });
         });
       </script>
     </div><!-- END OF Part 7 -->
@@ -560,76 +563,77 @@
         <div id="target2"></div>
       </div>
       <script>
-        var target = document.getElementById('target2');
-        var alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        document.addEventListener("DOMContentLoaded", function () {
+          let target = document.getElementById('target2');
+          let alphabet = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
-        // Create the form and its elements
-        var theForm = document.createElement('form'),
-          theLabel = document.createElement('label'),
-          theResult = document.createElement('input'),
-          theButton = document.createElement('button');
+          // Create the form and its elements
+          let theForm = document.createElement('form'),
+            theLabel = document.createElement('label'),
+            theResult = document.createElement('input'),
+            theButton = document.createElement('button');
 
-        theLabel.textContent = 'Enter your first name:';
-        theLabel.style.display = 'block';
+          target.appendChild(theForm);
+          theLabel.textContent = 'Enter your first name:';
+          theLabel.style.display = 'block';
+          theForm.appendChild(theLabel);
 
-        theResult.readOnly = true;
-        theResult.style.display = 'block';
-        theResult.style.marginBottom = '1rem';
+          theResult.readOnly = true;
+          theResult.style.display = 'block';
+          theResult.style.marginBottom = '1rem';
+          theForm.appendChild(theResult);
 
-        theButton.textContent = 'Add letter';
-        theButton.type = 'button';
-        theButton.style.display = 'block';
+          theForm.appendChild(sliderCombo());
 
-        // Put all elements on the form and add the form
-        theForm.appendChild(theLabel);
-        theForm.appendChild(theResult);
-        theForm.appendChild(sliderCombo());
-        theForm.appendChild(theButton);
-        target.appendChild(theForm);
+          theButton.textContent = 'Add letter';
+          theButton.type = 'button';
+          theButton.style.display = 'block';
+          theForm.appendChild(theButton);
 
-
-        // Make a slider, and have it update the accompanying slidervalue
-        function slider() {
-          let slider = document.createElement('input');
-          slider.type = 'range';
-          slider.min = '0';
-          slider.max = '25';
-          slider.step = '1';
-          slider.value = '-1';
-          let currentResult = theResult.value;
-          slider.addEventListener('input', function () {
-            let sliderPos = event.target.value;
-            slider.parentElement.firstChild.value = alphabet[sliderPos];
-            theResult.value = currentResult + alphabet[sliderPos];
-          });
-          return slider;
-        }
-
-        // Make something to show the curent slider value
-        function sliderValue() {
-          let sliderValue = document.createElement('output');
-          return sliderValue;
-        }
-
-        // Make a slider and its accompanying slidervalue
-        function sliderCombo() {
-          let sliderCombo = document.createElement('div');
-          sliderCombo.appendChild(sliderValue());
-          sliderCombo.innerHTML += '&nbsp;';
-          sliderCombo.appendChild(slider());
-          return sliderCombo;
-        }
-
-        // When the button is clicked, then ... 
-        theButton.addEventListener('click', function () {
-          let combo = event.target.previousSibling;
-          let theOutput = combo.firstChild;
-          let theInput = combo.lastChild;
-          if (theOutput.innerHTML != '') {
-            theInput.disabled = true;
-            event.target.insertAdjacentElement('beforebegin', sliderCombo());
+          // Make a slider, and have it update the accompanying slidervalue
+          function slider() {
+            let slider = document.createElement('input');
+            slider.type = 'range';
+            slider.min = '0';
+            slider.max = '25';
+            slider.step = '1';
+            slider.value = '-1';
+            let currentResult = target.querySelector('input').value;
+            slider.addEventListener('input', function () {
+              let sliderPos = event.target.value;
+              slider.parentElement.firstChild.value = alphabet[sliderPos];
+              target.querySelector('input').value = currentResult + alphabet[sliderPos];
+            });
+            return slider;
           }
+
+          // Make something to show the curent slider value
+          function sliderValue() {
+            let sliderValue = document.createElement('output');
+            return sliderValue;
+          }
+
+          // Make a slider and its accompanying slidervalue
+          function sliderCombo() {
+            let sliderCombo = document.createElement('div');
+            sliderCombo.appendChild(sliderValue());
+            sliderCombo.innerHTML += '&nbsp;';
+            sliderCombo.appendChild(slider());
+            return sliderCombo;
+          }
+
+          // When the button is clicked, then ... 
+          theButton.addEventListener('click', function () {
+            let combo = event.target.previousSibling;
+            let theOutput = combo.firstChild;
+            let theInput = combo.lastChild;
+            if (theOutput.innerHTML != '') {
+              theInput.disabled = true;
+              event.target.insertAdjacentElement('beforebegin', sliderCombo());
+            }
+          });
         });
+
       </script>
     </div><!-- END OF Part 8 -->
   </div>
