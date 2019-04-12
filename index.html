@@ -502,7 +502,6 @@
           target.appendChild(theForm);
           theForm.appendChild(theLabel);
           theForm.appendChild(theResult);
-          let ResultBox = target.querySelector('input');
           theForm.appendChild(sliderCombo());
           theForm.appendChild(theButton);
 
@@ -588,7 +587,6 @@
           target.appendChild(theForm);
           theForm.appendChild(theLabel);
           theForm.appendChild(theResult);
-          let ResultBox = target.querySelector('input');
           theForm.appendChild(sliderCombo());
           theForm.appendChild(theButton);
 
@@ -635,7 +633,7 @@
               event.target.insertAdjacentElement('beforebegin', sliderCombo());
             }
           });
-        });
+        }); 
       </script>
     </div><!-- END OF Part 8 -->
   </div>
